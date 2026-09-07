@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  /* Surfaces */
+  --color-base: #030a2e;
+  --color-deep: #020928;
+  --color-card: #051251;
+  --color-card-alt: #040d3d;
+  --color-navy: #061665;
+  --color-border: #384584;
+
+  /* Accent */
+  --color-pink: #ff379e;
+  --color-magenta: #e018e0;
+  --color-magenta-light: #e646e6;
+  --color-plum: #912491;
+  --color-blue: #2262ee;
+  --color-cyan: #00ffd2;
+
+  /* Light & text */
+  --color-text: #ebecf3;
+  --color-sky: #8ec8ee;
+  --color-pale-blue: #d7e2fb;
+  --color-pale-blue-2: #ecf2fd;
+  --color-ice-blue: #ebf7ff;
+
+  /* Typography scale */
+  --text-hero: 4.25rem;
+  --text-hero--line-height: 1.05;
+  --text-hero--font-weight: 700;
+
+  --text-pagetitle: 3.75rem;
+  --text-pagetitle--line-height: 1.08;
+  --text-pagetitle--font-weight: 700;
+
+  --text-heading: 3rem;
+  --text-heading--line-height: 1.12;
+  --text-heading--font-weight: 700;
+
+  --text-subheading: 2.25rem;
+  --text-subheading--line-height: 1.2;
+  --text-subheading--font-weight: 600;
+
+  --text-cardtitle: 1.375rem;
+  --text-cardtitle--line-height: 1.3;
+  --text-cardtitle--font-weight: 600;
+
+  --text-lead: 1.25rem;
+  --text-lead--line-height: 1.5;
+
+  --text-body: 1.125rem;
+  --text-body--line-height: 1.6;
+
+  --text-default: 1rem;
+  --text-default--line-height: 1.5;
+  --text-default--font-weight: 500;
+
+  --text-meta: 0.75rem;
+  --text-meta--line-height: 1.4;
+  --text-meta--font-weight: 500;
+
+  --text-micro: 0.625rem;
+  --text-micro--line-height: 1.4;
+  --text-micro--font-weight: 500;
+
+  /* Radius */
+  --radius-card: 12px;
+  --radius-pill: 34px;
+  --radius-badge: 20px;
+  --radius-chip: 4px;
+
+  /* Layout */
+  --breakpoint-frame: 1440px;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--color-base);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+.frame {
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 999px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
