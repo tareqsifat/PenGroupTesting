@@ -18,7 +18,7 @@ export default function ExploreCoursesPage() {
 
   return (
     <>
-      <Header />
+      <Header variant="inner" />
       <main className="flex-1 bg-base">
         <CoursesHero />
         <section className="relative overflow-hidden bg-base px-6 py-16 md:px-20 md:py-[120px]">
