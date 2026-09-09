@@ -2,11 +2,16 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { CourseVisual } from "@/components/courses/CourseVisual";
-import { CourseDetailsTabs } from "@/components/course-details/CourseDetailsTabs";
-import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
+import { CourseHero } from "@/components/course-details/CourseHero";
+import { CourseStats } from "@/components/course-details/CourseStats";
+import { CourseSectionNav } from "@/components/course-details/CourseSectionNav";
+import { StructureSection } from "@/components/course-details/StructureSection";
+import { AdmissionsSection } from "@/components/course-details/AdmissionsSection";
+import { CourseSpecCta } from "@/components/course-details/CourseSpecCta";
+import { ReadyToApplyCta } from "@/components/course-details/ReadyToApplyCta";
+import { TestimonialCarousel } from "@/components/shared/TestimonialCarousel";
 import { getAllCourses, getCourseBySlug } from "@/data/courses";
+import { testimonials } from "@/data/testimonials";
 
 interface CourseDetailsPageProps {
   params: Promise<{ slug: string }>;
@@ -39,30 +44,15 @@ export default async function CourseDetailsPage({
   return (
     <>
       <Header />
-      <main className="flex-1">
-        <section className="frame grid gap-10 px-6 pt-16 pb-10 md:grid-cols-2 md:px-10 md:pt-20">
-          <div className="flex flex-col gap-5">
-            <div className="flex flex-wrap gap-2">
-              <Badge>{course.school}</Badge>
-              <Badge>{course.level}</Badge>
-              <Badge>{course.duration}</Badge>
-            </div>
-            <h1 className="text-pagetitle font-bold text-white">
-              {course.title}
-            </h1>
-            <p className="max-w-lg text-lead text-text/70">
-              {course.tagline}
-            </p>
-            <div>
-              <Button href="/courses">Apply now</Button>
-            </div>
-          </div>
-          <CourseVisual course={course} className="h-64 md:h-full" />
-        </section>
-
-        <section className="frame border-t border-border/60 px-6 py-14 md:px-10">
-          <CourseDetailsTabs course={course} />
-        </section>
+      <main className="flex-1 bg-base">
+        <CourseHero course={course} />
+        <CourseStats course={course} />
+        <CourseSectionNav />
+        <StructureSection course={course} />
+        <AdmissionsSection course={course} />
+        <CourseSpecCta />
+        <ReadyToApplyCta />
+        <TestimonialCarousel testimonials={testimonials} bg="deep" />
       </main>
       <Footer />
     </>

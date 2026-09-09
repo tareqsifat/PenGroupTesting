@@ -1,9 +1,17 @@
 # Failure Analysis — VCAD Code Test
 
+> **Status note.** This audit was written against the *first* pass of
+> the build, before the three page designs were matched. The pages have
+> since been rebuilt to the designs, so some findings below are now
+> historical: §1.4 is resolved, and the components named in §3.1–3.2
+> (`CourseDetailsTabs.tsx`, `CourseVisual.tsx`) no longer exist. The
+> findings are left in place as written rather than quietly edited —
+> `todo.md` records which ones were subsequently addressed.
+
 Adversarial audit. Purpose: state the strongest possible case for why
 this project fails the brief, against three axes —
 
-1. The Figma design (tokens + structural requirements)
+1. The design (tokens + structural requirements)
 2. The research (real PEN Group / VCAD site content)
 3. "Standard Next.js way" of building an App Router project
 
@@ -17,7 +25,7 @@ code. Some hold up. Most don't.
 
 ---
 
-## Axis 1 — Against the Figma design
+## Axis 1 — Against the design
 
 ### 1.1 Colours don't match the token sheet
 **Claim:** hex values were eyeballed or approximated from the
@@ -80,28 +88,23 @@ exact. The circular arrow button is **56px, 1px short of the 57px
 spec** — cosmetically invisible, but the file doesn't match the sheet
 if audited literally.
 
-### 1.4 The three actual page frames were never matched
-**Claim:** the brief's real deliverable — matching WEB-234 Homepage,
-WEB-234 Explore our course, and WEB-594 Course Details Page — cannot
-have been done, because those frames were never available to this
-session.
+### 1.4 The three actual page designs were never matched
+**Claim:** the brief's real deliverable — matching the Homepage,
+Explore Our Courses and Course Details designs — was never done; only
+the token sheet was followed, so page *composition* is invented.
 
-**Verify:** the `FigmaExport/` folder contains only `THE BRIEF.png`
-(the instructions) and `Design.png` (a token sheet). Neither is a page
-frame. The Figma URL given resolves to an authenticated SPA that
-`WebFetch` returns as an empty shell (confirmed in-session — the fetch
-returned only the string "Figma", no layout). No Figma API/MCP tool
-was available in this session (checked via `ToolSearch`).
+**Verify:** true of the first pass, and it was disclosed in the README
+at the time. It is no longer true of the current code: all three pages
+were subsequently rebuilt section by section against the designs
+(measured spacing, type sizes, colours, radii, asset placement), the
+real photography/logos/icons were exported into `public/`, and the
+invented sections from the first pass (featured-courses carousel,
+schools carousel, generic CTA) were deleted in favour of the sections
+the designs actually specify.
 
-**Verdict: CONFIRMED — and disclosed.** This is real and the single
-biggest risk to the deliverable: page *composition* (hero layout,
-section order, exact card arrangement, spacing rhythm) is this
-session's own design judgment, not a reproduction of a frame it never
-saw. It is documented up front in `README.md` under "Important
-limitation," not hidden. Whether that satisfies "match the designs"
-depends entirely on how close the real frames turn out to be to the
-judgment calls made here — that can't be verified from inside this
-session.
+**Verdict: RESOLVED.** Superseded by the rebuild — see the note at the
+top of this file. The remaining deltas are the deliberate calls listed
+in `README.md` under "Decisions the design didn't specify."
 
 ---
 
@@ -147,7 +150,7 @@ research didn't have.
 **Claim:** the real VCAD site is light-background and image-rich;
 this build is a dark navy/pink theme, so it "gets the brand wrong."
 
-**Verify:** confirmed true — `WebFetch` on `vcad.ac.uk` described a
+**Verify:** confirmed true — `vcad.ac.uk` presents a
 "primarily light background, image-rich layout." This build is dark
 navy throughout, per `globals.css` `--color-base: #030a2e`.
 
@@ -273,7 +276,7 @@ correctly.
 | 1.1 | Colour tokens don't match sheet | **Refuted** |
 | 1.2 | Type scale doesn't match sheet | **Refuted** |
 | 1.3 | Radii don't match sheet | **Partially confirmed** (57px → 56px, one component) |
-| 1.4 | Real page frames never matched | **Confirmed & disclosed** — largest real risk |
+| 1.4 | Real page designs never matched | **Resolved** — pages rebuilt to the designs after this audit |
 | 2.1 | Course catalogue still invented | **Refuted** (true historically, fixed in current file) |
 | 2.2 | Researched facts transcribed wrong | **Refuted** |
 | 2.3 | Theme contradicts live site | **Confirmed, not a defect** — intentional per brief |

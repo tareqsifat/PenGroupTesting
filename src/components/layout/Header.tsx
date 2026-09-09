@@ -1,39 +1,49 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
 
 const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/courses", label: "Explore Courses" },
+  { href: "/", label: "ABOUT VCAD" },
+  { href: "/courses", label: "COURSES" },
+  { href: "/", label: "CONTACT US" },
 ];
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border/60 bg-deep/90 backdrop-blur-md">
-      <div className="frame flex items-center justify-between px-6 py-4 md:px-10">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-chip bg-pink text-default font-semibold text-white">
-            V
-          </span>
-          <span className="text-cardtitle font-semibold text-white">
-            VCAD
-          </span>
+    <header className="relative z-40 flex h-[100px] items-center justify-center bg-card-alt px-6 md:px-20">
+      <div className="frame flex w-full items-center justify-between">
+        <Link href="/" className="flex items-center" aria-label="VCAD home">
+          <Image
+            src="/svg/logo-vcad.svg"
+            alt="Victoria College of Arts and Design"
+            width={134}
+            height={50}
+            priority
+          />
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-default text-text/80 transition-colors hover:text-white"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        <div className="hidden items-center justify-between gap-14 md:flex">
+          <nav className="flex items-center gap-[55px]">
+            {NAV_LINKS.map((link, i) => (
+              <Link
+                key={link.label + i}
+                href={link.href}
+                className="text-default text-text transition-colors hover:text-pink"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
 
-        <Button href="/courses" variant="primary" className="hidden md:inline-flex">
-          Apply now
-        </Button>
+          <button
+            type="button"
+            aria-label="Open menu"
+            className="flex size-8 flex-col items-center justify-between py-[5px]"
+          >
+            <span className="h-[3px] w-full bg-text" />
+            <span className="h-[3px] w-full bg-text" />
+            <span className="h-[3px] w-full bg-text" />
+          </button>
+        </div>
 
         <Link
           href="/courses"

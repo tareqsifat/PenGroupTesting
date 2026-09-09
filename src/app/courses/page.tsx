@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { CoursesHero } from "@/components/courses/CoursesHero";
 import { ExploreCoursesClient } from "@/components/courses/ExploreCoursesClient";
+import { CoursesGallerySection } from "@/components/courses/CoursesGallerySection";
 import { getAllCourses, getSchools } from "@/data/courses";
 
 export const metadata: Metadata = {
@@ -17,25 +19,16 @@ export default function ExploreCoursesPage() {
   return (
     <>
       <Header />
-      <main className="flex-1">
-        <section className="frame px-6 pt-16 pb-10 md:px-10">
-          <span className="text-meta uppercase tracking-wide text-pink">
-            Courses
-          </span>
-          <h1 className="mt-3 text-pagetitle font-bold text-white">
-            Explore Our Courses
-          </h1>
-          <p className="mt-4 max-w-2xl text-lead text-text/70">
-            Every course VCAD offers, modelled from a single source of data.
-            Filter by school, or browse the full gallery below.
-          </p>
+      <main className="flex-1 bg-base">
+        <CoursesHero />
+        <section className="relative overflow-hidden bg-base px-6 py-16 md:px-20 md:py-[120px]">
+          <div className="frame relative">
+            <ExploreCoursesClient courses={courses} schools={schools} />
+          </div>
         </section>
-
-        <section className="frame px-6 pb-20 md:px-10">
-          <ExploreCoursesClient courses={courses} schools={schools} />
-        </section>
+        <CoursesGallerySection courses={courses} />
       </main>
-      <Footer />
+      <Footer variant="courses" />
     </>
   );
 }

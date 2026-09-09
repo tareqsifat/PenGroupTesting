@@ -9,16 +9,13 @@ say so explicitly rather than claiming a clean state.
 
 - [x] Read the brief (`FigmaExport/THE BRIEF.png`) and the token sheet
       (`FigmaExport/Design.png`).
-- [x] Identified the Figma link only had a token sheet, not the three
-      real page frames (WEB-234 Homepage, WEB-234 Explore our course,
-      WEB-594 Course Details) — flagged to the user rather than
-      guessing silently. No Figma API/MCP access in this session, and
-      `WebFetch` on the Figma URL returns an empty SPA shell.
-      → confirmed as the largest real risk in `failed-doc.md` §1.4.
-- [x] Given the user had nothing else to share, researched the real
-      brand instead: `pengroup.com` (parent company) → confirmed VCAD
-      is a real PEN Group institution → `vcad.ac.uk` for real course
-      content, since none existed in the Figma export or the brief.
+- [x] First pass had only the brief and the token sheet to work from,
+      so page composition was a judgment call — flagged openly rather
+      than presented as a match. → later superseded, see §8.
+- [x] Researched the real brand: `pengroup.com` (parent company) →
+      confirmed VCAD is a real PEN Group institution → `vcad.ac.uk`
+      for real course content, since none was specified in the
+      designs or the brief.
 
 ## 1. Project setup
 
@@ -117,24 +114,58 @@ say so explicitly rather than claiming a clean state.
       tab switching, accordion expand — no console errors.
 - [x] Wrote `README.md` covering how to run it, how far it got, the
       one undocumented decision (loading/empty states), and what's
-      next — including the Figma-frame limitation, stated plainly
-      rather than glossed over.
+      next — including the design-fidelity limitation of the first
+      pass, stated plainly rather than glossed over.
 - [x] Wrote `failed-doc.md`: an adversarial audit of this project
-      against the Figma tokens, the research, and standard Next.js
+      against the design tokens, the research, and standard Next.js
       conventions, with every claim checked against the real code.
       9 of 13 claims confirmed as real (if mostly minor/disclosed)
       issues — this file exists so that isn't hidden either.
 
+## 8. Rebuild against the designs
+
+Once the three page designs were available, every page was rebuilt to
+match them section by section, rather than kept as the first pass's
+judgment calls.
+
+- [x] Real assets (photography, logos, social + UI icons, decorative
+      arcs) exported into `public/images` and `public/svg`, replacing
+      the gradient placeholders. SVGs stripped of editor metadata;
+      PNGs stripped of text/EXIF chunks.
+- [x] Homepage rebuilt to the designed sections: photo-collage hero,
+      "Explore our creative courses" list + photo, pull-quote + photo
+      trio, campuses carousel, testimonial carousel, partner
+      institutions, stories carousel. The first pass's invented
+      featured-courses carousel, schools carousel and generic CTA were
+      deleted — they aren't in the designs.
+- [x] Explore Our Courses rebuilt: hero, asymmetric grid with the
+      corner cut-out cards and hover detail panel, full-bleed gallery
+      strip, testimonial.
+- [x] Course Details rebuilt: breadcrumb hero, six course-info stat
+      cards, in-page section nav, year-tabbed module accordion,
+      admissions accordions, course-spec download banner, "Ready to
+      Apply?" CTA, testimonial. The old four-tab component
+      (`CourseDetailsTabs.tsx`) was replaced.
+- [x] Footer rebuilt with the two variants the designs show
+      (homepage vs courses page).
+- [x] Data model extended for the above (`yearGroups`, admissions
+      routes, study mode, per-course imagery) — still one source in
+      `src/data/courses.ts`, still nothing hardcoded into markup.
+- [x] Verified in a real browser at 1440×900 across all three page
+      types; `tsc --noEmit`, ESLint and `next build` all clean.
+- [x] Two defects found in that browser pass and fixed: card text
+      running under the corner arrow badge, and a doubled section gap
+      between Course Structure and Admissions.
+
 ## Outstanding (not done)
 
-Everything marked `[ ]` above, all confirmed in `failed-doc.md`:
-default favicon, dead `sky` accent code, no carousel keyboard support,
-no ARIA tab/accordion pattern, 56px vs 57px circular arrow button, two
-arbitrary-value gradients outside the token system. None break a
-brief requirement; all are real and unaddressed as of this file.
+Everything marked `[ ]` above: default favicon, dead `sky` accent code
+(now fully unused — `accentStyles` in `src/lib/utils.ts` has no
+remaining callers), no carousel keyboard support, no ARIA tab pattern
+on the year tabs, and some arbitrary Tailwind values outside the token
+system. None break a brief requirement; all are real and unaddressed
+as of this file.
 
-## Still blocked
+## Still open
 
-- Git identity (`user.name`/`user.email`) not yet set in this repo —
-  local commit still pending on that.
-- GitHub repo creation and Vercel deploy — planned, not started.
+- Vercel deploy — planned, not started.

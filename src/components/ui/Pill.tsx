@@ -13,10 +13,10 @@ export function Pill({ children, active, onClick }: PillProps) {
       onClick={onClick}
       aria-pressed={active}
       className={cx(
-        "rounded-pill border px-5 py-2 text-default transition-colors",
+        "rounded-pill border px-5 py-3 text-lead transition-colors",
         active
-          ? "border-pink bg-pink text-white"
-          : "border-border bg-transparent text-text/70 hover:border-text/50 hover:text-white"
+          ? "border-transparent bg-plum text-white"
+          : "border-transparent bg-transparent text-text/80 hover:text-white"
       )}
     >
       {children}

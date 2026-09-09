@@ -4,18 +4,18 @@ function Skeleton({ className }: { className?: string }) {
 
 export function CoursesLoadingState() {
   return (
-    <div aria-live="polite" aria-busy="true" className="flex flex-col gap-10">
-      <div className="grid gap-6 lg:grid-cols-3">
-        <Skeleton className="h-96" />
-        <div className="flex flex-col gap-6">
-          <Skeleton className="h-[9.5rem]" />
-          <Skeleton className="h-[9.5rem]" />
+    <div aria-live="polite" aria-busy="true" className="flex flex-col gap-20">
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-stretch">
+        <Skeleton className="h-64 flex-1 lg:h-[720px]" />
+        <div className="flex flex-1 flex-col gap-6">
+          <Skeleton className="h-40 lg:h-[343px]" />
+          <Skeleton className="h-40 lg:h-[343px]" />
         </div>
-        <Skeleton className="h-96" />
+        <Skeleton className="h-64 flex-1 lg:h-[720px]" />
       </div>
-      <div className="flex gap-6 overflow-hidden">
-        {Array.from({ length: 4 }).map((_, i) => (
-          <Skeleton key={i} className="h-64 w-64 shrink-0" />
+      <div className="flex gap-4 overflow-hidden">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Skeleton key={i} className="h-[320px] w-[310px] shrink-0" />
         ))}
       </div>
     </div>

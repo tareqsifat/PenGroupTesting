@@ -1,84 +1,158 @@
+import Image from "next/image";
 import Link from "next/link";
-import { getSchools } from "@/data/courses";
+import { SectionGridLines } from "@/components/layout/SectionGridLines";
+import { SOCIAL_ICON_PATHS } from "@/components/layout/socialIconPaths";
 
-const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
-  {
-    title: "Study",
-    links: [
-      { label: "Explore Courses", href: "/courses" },
-      { label: "How to Apply", href: "/courses" },
-      { label: "Open Days", href: "/" },
-    ],
-  },
-  {
-    title: "About",
-    links: [
-      { label: "About VCAD", href: "/" },
-      { label: "PEN Group", href: "/" },
-      { label: "Contact", href: "/" },
-    ],
-  },
+const NAV_COLUMNS = [
+  ["ABOUT VCAD", "OUR STORY", "CAMPUSES", "POLICIES"],
+  ["CAREER", "OUR PARTNERS", "COOKIES POLICY", "FAQS"],
 ];
 
-export function Footer() {
-  const schools = getSchools();
+const SOCIALS = [
+  { name: "Facebook", key: "facebook" },
+  { name: "Twitter / X", key: "twitter" },
+  { name: "LinkedIn", key: "linkedin" },
+  { name: "Instagram", key: "instagram" },
+  { name: "YouTube", key: "youtube" },
+  { name: "TikTok", key: "tiktok" },
+];
+
+const ACCREDITATIONS = [
+  { name: "AdvanceHE Affiliate Member", icon: "/images/accred-advancehe.png", w: 116, h: 56 },
+  { name: "QAA Member", icon: "/images/accred-qaa.png", w: 50, h: 56 },
+  { name: "Cyber Essentials Certified", icon: "/images/accred-cyber.png", w: 49, h: 56 },
+];
+
+interface FooterProps {
+  /**
+   * The courses page's footer differs from the homepage's: 68px headline,
+   * links prefixed with "/", no accreditation badges, and its own arc
+   * placement.
+   */
+  variant?: "home" | "courses";
+}
+
+export function Footer({ variant = "home" }: FooterProps) {
+  const isCourses = variant === "courses";
 
   return (
-    <footer className="border-t border-border/60 bg-deep">
-      <div className="frame grid gap-10 px-6 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:px-10">
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-chip bg-pink text-default font-semibold text-white">
-              V
-            </span>
-            <span className="text-cardtitle font-semibold text-white">
-              VCAD
-            </span>
+    <footer className="relative overflow-hidden bg-deep px-6 py-[60px] md:px-20">
+      <SectionGridLines />
+
+      {/* The arcs again at 72.95% scale (675.965 x 430.16), rotated 131.19deg
+          and flipped on Y. Rotated bbox 768.857 x 791.977 at
+          calc(66.67% - 28.44px), -192.97 -> centre calc(66.67% + 355.99px),
+          203.02, at 0.12 opacity. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/svg/circles-footer.svg"
+        alt=""
+        aria-hidden
+        className={
+          isCourses
+            ? // Courses variant — 528.943 x 336.6, bbox 601.63 x 619.721 at
+              // calc(66.67% + 22.31px), -116.06 -> centre 1283.18, 193.8.
+              "pointer-events-none absolute left-[calc(66.67vw+322.51px)] top-[193.8px] hidden h-[336.6px] w-[528.943px] max-w-none -translate-x-1/2 -translate-y-1/2 rotate-[131.19deg] -scale-y-100 lg:block"
+            : "pointer-events-none absolute left-[calc(66.67vw+355.99px)] top-[203.02px] hidden h-[430.16px] w-[675.965px] max-w-none -translate-x-1/2 -translate-y-1/2 rotate-[131.19deg] -scale-y-100 lg:block"
+        }
+      />
+      <div className="frame relative flex flex-col gap-11">
+        <div className="flex flex-col gap-6">
+          <Image
+            src="/svg/logo-mark.svg"
+            alt="VCAD"
+            width={103}
+            height={102}
+            className="h-[70px] w-[71px] md:h-[102px] md:w-[103px]"
+          />
+
+          <div className="flex flex-col gap-10">
+            <p
+              className={`max-w-4xl text-[32px] font-bold leading-[1.1] text-text ${
+                isCourses
+                  ? "md:text-[68px] md:leading-[74px]"
+                  : "md:text-[64px] md:leading-[70px]"
+              }`}
+            >
+              Get creative and{" "}
+              <span className="text-magenta">turn your passion</span> for the
+              Arts into a rewarding career.
+            </p>
+            <div className="h-px w-full bg-border" />
           </div>
-          <p className="mt-4 max-w-xs text-default text-text/70">
-            Victoria College of Arts and Design, part of PEN Group. Creative
-            education across fashion, graphic design and business for
-            creatives.
-          </p>
         </div>
 
-        {COLUMNS.map((col) => (
-          <div key={col.title}>
-            <h3 className="text-meta uppercase tracking-wide text-text/50">
-              {col.title}
-            </h3>
-            <ul className="mt-4 space-y-3">
-              {col.links.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-default text-text/80 hover:text-white"
+        <div className="flex flex-col items-start justify-between gap-10 md:flex-row">
+          <div className="flex flex-col gap-11">
+            <div className="flex items-center gap-2">
+              {SOCIALS.map((s) => (
+                <a
+                  key={s.name}
+                  href="#"
+                  aria-label={s.name}
+                  className="flex size-10 items-center justify-center rounded-pill border-x-0 border-y border-white/40 bg-white/10 text-[#ebedee] transition-colors hover:border hover:border-[#fafdff] hover:bg-white hover:text-[#033d61]"
+                >
+                  <svg
+                    width="40"
+                    height="40"
+                    viewBox="0 0 40 40"
+                    fill="currentColor"
+                    aria-hidden="true"
                   >
-                    {link.label}
-                  </Link>
-                </li>
+                    {SOCIAL_ICON_PATHS[s.key].map((d) => (
+                      <path key={d.slice(0, 24)} d={d} />
+                    ))}
+                  </svg>
+                </a>
               ))}
-            </ul>
+            </div>
+
+            <div className="flex flex-col gap-6 text-default font-medium text-text sm:flex-row sm:gap-14">
+              {NAV_COLUMNS.map((col, i) => (
+                <ul key={i} className="flex flex-col gap-6">
+                  {col.map((label) => (
+                    <li key={label}>
+                      <Link href="/" className="hover:text-pink">
+                        {isCourses ? `/ ${label}` : label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              ))}
+            </div>
           </div>
-        ))}
 
-        <div>
-          <h3 className="text-meta uppercase tracking-wide text-text/50">
-            Schools
-          </h3>
-          <ul className="mt-4 space-y-3">
-            {schools.map((school) => (
-              <li key={school} className="text-default text-text/80">
-                {school}
-              </li>
-            ))}
-          </ul>
+          <div className="flex flex-col gap-6">
+            <a
+              href="mailto:enquiry_office@vcad.co.uk"
+              className="text-[28px] font-semibold leading-[1.1] text-[#f0f2f4] hover:text-pink md:text-[36px] md:leading-[40px]"
+            >
+              enquiry_office@vcad.co.uk
+            </a>
+            <a href="tel:02032789857" className="text-lead font-medium text-text hover:text-pink">
+              020 3278 9857
+            </a>
+            <div className={`items-center gap-3 ${isCourses ? "hidden" : "flex"}`}>
+              {ACCREDITATIONS.map((a) => (
+                <Image
+                  key={a.name}
+                  src={a.icon}
+                  alt={a.name}
+                  width={a.w}
+                  height={a.h}
+                  className="h-[56px] w-auto"
+                />
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div className="frame flex flex-col gap-2 border-t border-border/60 px-6 py-6 text-meta text-text/50 md:flex-row md:items-center md:justify-between md:px-10">
-        <span>&copy; {new Date().getFullYear()} VCAD — part of PEN Group.</span>
-        <span>Chattogram</span>
+        <div className="h-px w-full bg-border" />
+
+        <div className="flex flex-col gap-2 text-default text-text sm:flex-row sm:items-center sm:justify-between">
+          <span>&copy; {new Date().getFullYear()} Victoria College of Arts and Design.</span>
+          <span>All rights reserved.</span>
+        </div>
       </div>
     </footer>
   );

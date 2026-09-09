@@ -87,7 +87,7 @@ export function Carousel({
       </div>
 
       {showArrows && (
-        <div className="mt-6 flex items-center gap-3">
+        <div className="mt-6 flex items-center gap-[5px]">
           <CircularArrowButton
             direction="left"
             label="Scroll left"
