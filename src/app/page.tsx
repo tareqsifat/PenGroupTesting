@@ -1,23 +1,29 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/home/Hero";
-import { FeaturedCoursesCarousel } from "@/components/home/FeaturedCoursesCarousel";
-import { SchoolsCarousel } from "@/components/home/SchoolsCarousel";
-import { CtaSection } from "@/components/home/CtaSection";
-import { getAllCourses, getFeaturedCourses } from "@/data/courses";
+import { CoursesShowcase } from "@/components/home/CoursesShowcase";
+import { QuoteSection } from "@/components/home/QuoteSection";
+import { CampusesCarousel } from "@/components/home/CampusesCarousel";
+import { PartnersSection } from "@/components/home/PartnersSection";
+import { StoriesCarousel } from "@/components/home/StoriesCarousel";
+import { TestimonialCarousel } from "@/components/shared/TestimonialCarousel";
+import { getFeaturedCourses } from "@/data/courses";
+import { testimonials } from "@/data/testimonials";
 
 export default function Home() {
   const featured = getFeaturedCourses();
-  const allCourses = getAllCourses();
 
   return (
     <>
       <Header />
       <main className="flex-1">
         <Hero />
-        <FeaturedCoursesCarousel courses={featured} />
-        <SchoolsCarousel courses={allCourses} />
-        <CtaSection />
+        <CoursesShowcase courses={featured} />
+        <QuoteSection />
+        <CampusesCarousel />
+        <TestimonialCarousel testimonials={testimonials} />
+        <PartnersSection />
+        <StoriesCarousel />
       </main>
       <Footer />
     </>

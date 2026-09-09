@@ -36,10 +36,18 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local editor / tooling state
+.idea/
+.vscode/
+
 # local tooling (keep the project docs, ignore session state)
 .claude/*
 !.claude/failed-doc.md
 !.claude/todo.md
+.agents/
+CLAUDE.md
+AGENTS.md
+skills-lock.json
 
 # typescript
 *.tsbuildinfo

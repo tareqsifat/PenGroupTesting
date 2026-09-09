@@ -20,13 +20,15 @@ export function CircularArrowButton({
       disabled={disabled}
       aria-label={label}
       className={cx(
-        "flex h-14 w-14 items-center justify-center rounded-full border border-border bg-card text-text transition-colors",
-        "hover:border-pink hover:text-pink disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-border disabled:hover:text-text"
+        // Default -> hover state of the design's circular arrow control.
+        "flex size-[78px] shrink-0 items-center justify-center rounded-full border border-border bg-card text-white transition-colors",
+        "hover:border-plum hover:bg-plum hover:text-white",
+        "disabled:cursor-not-allowed disabled:opacity-30"
       )}
     >
       <svg
-        width="20"
-        height="20"
+        width="24"
+        height="24"
         viewBox="0 0 24 24"
         fill="none"
         aria-hidden="true"

@@ -1,7 +1,8 @@
 # VCAD — Web Developer Code Test
 
 Three pages of the VCAD website (Victoria College of Arts and Design, part
-of PEN Group), built with Next.js (App Router) + TypeScript + Tailwind CSS.
+of PEN Group), built with Next.js (App Router) + TypeScript + Tailwind CSS,
+built to match the supplied designs.
 
 ## Running locally
 
@@ -15,79 +16,74 @@ Open http://localhost:3000. `npm run build` produces a production build;
 
 ## How far I got
 
-All three pages are built: Homepage, Explore Our Courses, and Course
-Details. Header and footer are shared components rendered once and reused
-across every page. Course content lives in one data file
-(`src/data/courses.ts`) and every page that shows courses — the homepage
-carousel, the courses grid/gallery, and the details page — reads from it.
+All three pages are built end-to-end — Homepage, Explore Our Courses and
+Course Details — matching the designs section by section, working from
+the measured spacing, type sizes, colours and radii rather than the token
+sheet alone. Header and footer are shared components rendered once and
+reused across every page. Course content lives in one data file
+(`src/data/courses.ts`) and every page that shows courses — the homepage,
+the courses grid/gallery, and the details page — reads from it. Photos,
+icons and logos live in `public/images` and `public/svg`.
 
-- **Homepage** — hero, a featured-courses carousel, a schools carousel,
-  and a CTA section. Both carousels support drag and arrow navigation.
-- **Explore Our Courses** — a school filter, the asymmetric card grid
-  (one feature card, two stacked cards, one expanded card with school
-  and duration badges), and a full gallery strip below it. Filtering
-  triggers a brief loading state, and an empty state appears if a filter
-  produces zero matches.
-- **Course Details** — hero with badges, and tabs (Overview / Curriculum
-  / Entry Requirements / Careers) where Curriculum is an accordion built
-  from the course's module data. Tabs and accordion are functional, not
-  static markup.
+- **Homepage** — nav, the photo-collage hero ("welcome to VCAD"), the
+  "Explore our creative courses" list + photo, the pull-quote + photo
+  trio, a campuses carousel, a testimonial carousel, partner institution
+  logos, and a stories carousel. All three carousels are single-item,
+  prev/next-driven, matching the design (not a multi-card scroller).
+- **Explore Our Courses** — hero, a school filter, the asymmetric card
+  grid (one large feature card, two stacked cards, one expanded card
+  with school + duration badges), a photo gallery strip (drag or arrow
+  navigation), and a testimonial carousel. Filtering triggers a brief
+  loading state, and an empty state appears if a filter produces zero
+  matches (see below — the brief flags these as intentionally
+  undesigned).
+- **Course Details** — breadcrumb + hero, six course-info stat cards, an
+  in-page section nav, a "Course Structure & Details" panel with
+  Foundation/First/Second/Third Year sub-tabs and an accordion of
+  modules, an "Admissions & Key Details" panel with route accordions
+  plus entry/English-language requirements, a course specification
+  download banner, a "Ready to Apply?" CTA, and a testimonial carousel.
 
 Course content is modelled on VCAD's real, public course offering
 (vcad.ac.uk/study-with-us) — 5 courses across Graphic Design, Fashion,
-and Business & Management for Creatives — rather than invented courses,
-once I found that VCAD is a real PEN Group institution with its own site.
-Copy is paraphrased from the public course pages; module codes, credits,
-tuition and entry requirements are quoted from there. See
-`src/data/courses.ts`.
+and Business & Management for Creatives — since the designs name courses
+in passing but don't model course data itself. Copy is
+paraphrased from the public course pages; module codes, credits, tuition
+and entry requirements are quoted from there. See `src/data/courses.ts`.
 
-## Important limitation: no visual mockups of the three pages
+## Decisions the design didn't specify
 
-I want to flag this clearly rather than let it look like an oversight.
-The Figma export I was given (`FigmaExport/`) contained the brief itself
-and a **design tokens sheet** (colours, type scale, radii, "Inter
-throughout") — but not the actual Homepage / Explore Courses / Course
-Details frames referenced in the brief, and no image assets. I don't have
-Figma API or MCP access in this environment, and the file link resolves
-to Figma's authenticated app shell, which isn't fetchable headlessly.
-
-So: colours, type sizes, weights, radii and the *structural* requirements
-(asymmetric grid shape, header/footer as shared components, tabs +
-accordion, carousels, data-driven cards) all come directly from the brief
-and the token sheet and are followed exactly. The actual page
-*composition* — hero layout, section order, card arrangement within the
-grid, spacing rhythm — is my own design judgment, not a reproduction of a
-Figma frame I never had access to. If given the real frames, the fastest
-fix would be swapping component layout/spacing to match, since the token
-foundation underneath is already correct.
-
-For the same reason, there are no exported photos, so course cards use an
-accent-coloured gradient block instead of an image (`CourseVisual.tsx`) —
-a deliberate placeholder, not a broken `<img>`.
-
-## One decision the brief didn't specify
-
-The brief explicitly calls out that loading and empty states aren't
-designed for the courses page. I added a school filter (not requested,
-but a natural way to make those two states reachable rather than
-theoretical) and decided:
-
-- **Loading** — filtering simulates a brief network round-trip and shows
-  skeleton placeholders shaped like the real grid/strip, so the layout
-  doesn't jump when data arrives.
-- **Empty** — a filter with zero matches shows a message plus a button
-  that clears the filter, rather than an ambiguous blank grid.
+- **Courses/loading/empty states** — explicitly undesigned per the
+  brief. Loading shows skeleton placeholders shaped like the real
+  grid/strip; an empty filter result shows a message plus a button that
+  clears the filter, rather than an ambiguous blank grid.
+- **Carousel content beyond one example** — the design shows one
+  testimonial, one story and one named campus. A carousel needs more
+  than one slide to be meaningfully interactive, so 2–3 further items
+  are modelled in the same voice for each (`src/data/testimonials.ts`,
+  inline in `StoriesCarousel.tsx` / `CampusesCarousel.tsx`) — clearly
+  commented at each call site.
+- **Curriculum beyond the Foundation year** — the design shows module
+  detail only for the Foundation Year, with an unpopulated First/Second/
+  Third Year tab strip. Rather than invent specific module titles the
+  design never specified, later years show a short "confirmed closer to
+  enrolment" placeholder instead.
+- **Card corner cut-out** — the courses-grid cards have a circle punched
+  out of the bottom-right corner around the arrow badge. Reproduced with
+  a CSS radial-gradient mask so it scales to both card sizes instead of
+  needing a hand-traced SVG shape per card.
 
 ## What I'd do next with more time
 
-- Get the real Figma frames and align composition/spacing exactly, and
-  use real VCAD course photography in place of the gradient placeholders.
-- Add automated tests (component tests for the carousel, grid, and tabs;
-  a couple of Playwright smoke tests per page).
-- Add basic SEO (OpenGraph images, JSON-LD for courses) now that the
-  course data is real.
-- Revisit accessibility passes on the carousel (keyboard scroll, focus
-  order) and tab/accordion (full ARIA roving-tabindex pattern).
+- Wire the school-filter pill state into the URL (`?school=`) so filtered
+  views are shareable/bookmarkable.
+- Replace the Course Specification "Download PDF" placeholder with a
+  real asset once one exists.
+- Add automated tests (component tests for the carousels, grid, and
+  accordions; a couple of Playwright smoke tests per page).
+- Add basic SEO (OpenGraph images, JSON-LD for courses).
+- Accessibility pass on the carousels (keyboard scroll, focus order) and
+  accordions (full ARIA roving-tabindex pattern).
 
 ## Stack
 

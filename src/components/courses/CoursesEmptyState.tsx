@@ -17,9 +17,7 @@ export function CoursesEmptyState({ onReset }: CoursesEmptyStateProps) {
         Try a different school, or clear the filter to see everything VCAD
         offers.
       </p>
-      <Button variant="secondary" onClick={onReset}>
-        Clear filter
-      </Button>
+      <Button onClick={onReset}>Clear filter</Button>
     </div>
   );
 }
