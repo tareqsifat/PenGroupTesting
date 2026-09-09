@@ -9,12 +9,13 @@ interface CourseHeroProps {
 }
 
 export function CourseHero({ course }: CourseHeroProps) {
-  // The design shows three equal photos in a row. Not every course is
-  // guaranteed two supplementary photos, so fall back to the single
+  // The design shows three equal photos in a row, not necessarily the same
+  // photo used for the course's card elsewhere on the site. Not every
+  // course is guaranteed a full hero set, so fall back to the single
   // course visual (centred, no row) rather than assuming the data exists.
   const photos =
-    course.heroGallery && course.heroGallery.length >= 2
-      ? [course.visual, ...course.heroGallery.slice(0, 2)]
+    course.heroGallery && course.heroGallery.length >= 3
+      ? course.heroGallery.slice(0, 3)
       : [course.visual];
 
   return (
