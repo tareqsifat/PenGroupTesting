@@ -3,9 +3,18 @@ import Link from "next/link";
 import { SectionGridLines } from "@/components/layout/SectionGridLines";
 import { SOCIAL_ICON_PATHS } from "@/components/layout/socialIconPaths";
 
-const NAV_COLUMNS = [
-  ["ABOUT VCAD", "OUR STORY", "CAMPUSES", "POLICIES"],
-  ["CAREER", "OUR PARTNERS", "COOKIES POLICY", "FAQS"],
+// Row-major order: on a 4-column row this reads ABOUT VCAD / OUR STORY /
+// CAMPUSES / POLICIES, then CAREER / OUR PARTNERS / COOKIES POLICY / FAQS
+// on the next row, matching the design's 4-column x 2-row grid.
+const FOOTER_LINKS = [
+  "ABOUT VCAD",
+  "OUR STORY",
+  "CAMPUSES",
+  "POLICIES",
+  "CAREER",
+  "OUR PARTNERS",
+  "COOKIES POLICY",
+  "FAQS",
 ];
 
 const SOCIALS = [
@@ -107,19 +116,15 @@ export function Footer({ variant = "home" }: FooterProps) {
               ))}
             </div>
 
-            <div className="flex flex-col gap-6 text-default font-medium text-text sm:flex-row sm:gap-14">
-              {NAV_COLUMNS.map((col, i) => (
-                <ul key={i} className="flex flex-col gap-6">
-                  {col.map((label) => (
-                    <li key={label}>
-                      <Link href="/" className="hover:text-pink">
-                        {isCourses ? `/ ${label}` : label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+            <ul className="grid grid-cols-2 gap-x-14 gap-y-6 text-default font-medium text-text sm:grid-cols-4">
+              {FOOTER_LINKS.map((label) => (
+                <li key={label}>
+                  <Link href="/" className="hover:text-pink">
+                    {isCourses ? `/ ${label}` : label}
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           <div className="flex flex-col gap-6">
