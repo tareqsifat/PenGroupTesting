@@ -9,7 +9,7 @@ export function CourseSectionNav() {
     <nav
       id="overview"
       aria-label="Course sections"
-      className="scroll-mt-24 bg-base px-6 md:px-20"
+      className="scroll-mt-24 bg-navy px-6 py-10 md:px-20 md:py-14"
     >
       <div className="frame no-scrollbar flex items-center gap-3 overflow-x-auto rounded-pill border border-border bg-card-alt/60 px-3 py-3">
         {LINKS.map((link, i) => (

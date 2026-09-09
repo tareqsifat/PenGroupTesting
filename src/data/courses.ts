@@ -35,7 +35,8 @@ export interface Course {
   studyMode: string;
   accent: AccentColor;
   visual: CourseVisual;
-  /** Two extra photos for the hero's 3-photo row, alongside `visual`. */
+  /** The hero's 3-photo row. Independent of `visual` — the design doesn't
+   *  necessarily reuse the card photo in the hero. */
   heroGallery?: CourseVisual[];
   campuses: string[];
   awardingBody: string;
@@ -164,6 +165,7 @@ export const courses: Course[] = [
     featured: true,
     visual: { image: "/images/course-2.jpg", imageAlt: "Graphic design students reviewing layouts together" },
     heroGallery: [
+      { image: "/images/course-2.jpg", imageAlt: "Graphic design students reviewing layouts together" },
       { image: "/images/hero-ahmed.jpg", imageAlt: "Graphic design student at work" },
       { image: "/images/gallery-2.png", imageAlt: "Student reading a design reference book" },
     ],
@@ -199,8 +201,9 @@ export const courses: Course[] = [
     featured: true,
     visual: { image: "/images/hero-kelly.jpg", imageAlt: "Fashion design student with a striking silhouette" },
     heroGallery: [
-      { image: "/images/gallery-2.png", imageAlt: "Fashion student reading a design reference book" },
-      { image: "/images/hero-ayo.jpg", imageAlt: "Fashion design student at work" },
+      { image: "/images/course-3.jpg", imageAlt: "Fashion design students discussing coursework" },
+      { image: "/images/gallery-4.png", imageAlt: "Fashion design duo working on a garment pattern" },
+      { image: "/images/gallery-5.png", imageAlt: "Fashion design staff member presenting to students" },
     ],
     campuses: ["London — Canary Wharf"],
     awardingBody: "Arts University Plymouth",
@@ -208,7 +211,7 @@ export const courses: Course[] = [
     summary:
       "Introduces creative fashion practice through theoretical, practical and technical work, building toward independent, self-directed projects.",
     description:
-      "Students progress through stages that build foundational skills, subject methodologies, specialisation and independent learning, with a particular focus on analytical and academic writing alongside the project management skills needed in professional fashion practice. No traditional portfolio is required to apply, so the foundation year is designed as an accessible entry point into creative fashion practice. From there, students build toward independent, self-directed project work, awarded by Arts University Plymouth.",
+      "This course introduces students to creative practice, focusing on theoretical, practical, and technical components. In early stages, students develop essential skills for academic success and personal growth, emphasising reflection and technical skills like visual communication. As they progress, they engage with methodologies, enhancing understanding of processes and fostering critical thinking, collaboration, and problem-solving.",
     highlights: [
       "Foundation year with no traditional portfolio required to apply",
       "Strong focus on project management alongside design practice",
@@ -234,8 +237,9 @@ export const courses: Course[] = [
     featured: true,
     visual: { image: "/images/course-1.jpg", imageAlt: "Fashion media and marketing students at a photoshoot" },
     heroGallery: [
+      { image: "/images/course-1.jpg", imageAlt: "Fashion media and marketing students at a photoshoot" },
       { image: "/images/hero-molly.jpg", imageAlt: "Fashion media student at work" },
-      { image: "/images/gallery-4.png", imageAlt: "Students reviewing marketing materials together" },
+      { image: "/images/explore-hero-2.png", imageAlt: "Students laying out marketing materials together" },
     ],
     campuses: ["London — Canary Wharf", "Manchester — International House"],
     awardingBody: "Arts University Plymouth",
@@ -269,8 +273,9 @@ export const courses: Course[] = [
     featured: true,
     visual: { image: "/images/course-3.jpg", imageAlt: "Business and management students in discussion" },
     heroGallery: [
-      { image: "/images/courses-classroom.png", imageAlt: "Business students in a classroom session" },
-      { image: "/images/gallery-5.png", imageAlt: "Students presenting a business proposal" },
+      { image: "/images/course-3.jpg", imageAlt: "Business and management students in discussion" },
+      { image: "/images/courses-classroom.png", imageAlt: "Business students in a lecture session" },
+      { image: "/images/hero-ayo.jpg", imageAlt: "Business and management student at work" },
     ],
     campuses: ["London — Canary Wharf", "Manchester — International House"],
     awardingBody: "Arts University Plymouth",
@@ -330,8 +335,9 @@ export const courses: Course[] = [
     accent: "cyan",
     visual: { image: "/images/course-4.jpg", imageAlt: "Business management graduate presenting a proposal" },
     heroGallery: [
-      { image: "/images/explore-hero-2.png", imageAlt: "Business management student at work" },
+      { image: "/images/course-4.jpg", imageAlt: "Business management graduate presenting a proposal" },
       { image: "/images/hero-ahmed.jpg", imageAlt: "Business management student at work" },
+      { image: "/images/courses-classroom.png", imageAlt: "Business management students in a lecture session" },
     ],
     campuses: ["London — Canary Wharf", "Manchester — International House"],
     awardingBody: "Arts University Plymouth",
