@@ -173,7 +173,7 @@ export const courses: Course[] = [
     summary:
       "A foundation-year route into graphic design, building academic and professional skills before specialising into self-initiated project work.",
     description:
-      "The course integrates theoretical, practical and technical elements, starting with foundational skills and subject-specific methodologies before students advance into specialisation with self-initiated projects that encourage autonomy and creative authorship.",
+      "The course integrates theoretical, practical and technical elements, starting with foundational skills and subject-specific methodologies before students advance into specialisation with self-initiated projects that encourage autonomy and creative authorship. No traditional portfolio is required to apply, making the foundation year an accessible route into graphic design. Students build academic and professional skills from day one, progressing toward self-initiated, specialist project work by the course's end.",
     highlights: [
       "Foundation year designed for students without a traditional portfolio route",
       "Progresses into self-initiated, specialist project work",
@@ -208,7 +208,7 @@ export const courses: Course[] = [
     summary:
       "Introduces creative fashion practice through theoretical, practical and technical work, building toward independent, self-directed projects.",
     description:
-      "Students progress through stages that build foundational skills, subject methodologies, specialisation and independent learning, with a particular focus on analytical and academic writing alongside project management skills needed in professional fashion practice.",
+      "Students progress through stages that build foundational skills, subject methodologies, specialisation and independent learning, with a particular focus on analytical and academic writing alongside the project management skills needed in professional fashion practice. No traditional portfolio is required to apply, so the foundation year is designed as an accessible entry point into creative fashion practice. From there, students build toward independent, self-directed project work, awarded by Arts University Plymouth.",
     highlights: [
       "Foundation year with no traditional portfolio required to apply",
       "Strong focus on project management alongside design practice",
@@ -243,7 +243,7 @@ export const courses: Course[] = [
     summary:
       "A foundation in creative practice that integrates theory, practice and technical skill, preparing students for professional media and marketing roles in fashion.",
     description:
-      "The curriculum emphasises reflection, creative thinking and technical skills across foundation, specialist and advanced units, preparing students for professional practice across fashion media and marketing.",
+      "The curriculum emphasises reflection, creative thinking and technical skills across foundation, specialist and advanced units, preparing students for professional practice across fashion media and marketing. The course combines fashion practice with media and marketing skill-building, so graduates are equally comfortable behind the camera and behind the campaign. A portfolio isn't required to apply, though a strong one strengthens your case, and with three intakes a year across two campuses there's flexibility in when and where you start.",
     highlights: [
       "Combines fashion practice with media and marketing skill-building",
       "Portfolio optional at application — but strengthens your case",
@@ -278,7 +278,7 @@ export const courses: Course[] = [
     summary:
       "A practical introduction to business principles tailored for the creative industries, ending with your own creative business proposal.",
     description:
-      "Across four core modules students build essential business knowledge — finance, legal frameworks, ethics, operations and marketing — before applying it all to a self-developed creative business concept.",
+      "Across four core modules students build essential business knowledge — finance, legal frameworks, ethics, operations and marketing — before applying it all to a self-developed creative business concept. It's built specifically for creative-industry students rather than generic business, so every module is grounded in the realities of running a creative venture. The course culminates in a real business proposal, not just theory, and offers a direct progression route into the BA (Hons) top-up degree.",
     highlights: [
       "Built specifically for creative-industry students, not generic business",
       "Culminates in a real business proposal, not just theory",
@@ -339,7 +339,7 @@ export const courses: Course[] = [
     summary:
       "Develops business and management knowledge for creative and professional contexts, combining theory with live project work.",
     description:
-      "The degree combines foundational business principles with creative, practical and live project work, emphasising entrepreneurial capability and management skills built for the creative industries specifically.",
+      "The degree combines foundational business principles with creative, practical and live project work, emphasising entrepreneurial capability and management skills built for the creative industries specifically. It's designed as a direct progression from the CertHE Business & Management for Creatives, carrying live project work through the whole course rather than relying on case studies alone. The Level 5 modules build straight into an Entrepreneurship capstone, so the degree ends with a venture of your own rather than an exam.",
     highlights: [
       "Direct progression from the CertHE Business & Management for Creatives",
       "Live project work throughout, not just case studies",
