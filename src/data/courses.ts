@@ -35,6 +35,8 @@ export interface Course {
   studyMode: string;
   accent: AccentColor;
   visual: CourseVisual;
+  /** Two extra photos for the hero's 3-photo row, alongside `visual`. */
+  heroGallery?: CourseVisual[];
   campuses: string[];
   awardingBody: string;
   tuitionFee: string;
@@ -161,6 +163,10 @@ export const courses: Course[] = [
     accent: "pink",
     featured: true,
     visual: { image: "/images/course-2.jpg", imageAlt: "Graphic design students reviewing layouts together" },
+    heroGallery: [
+      { image: "/images/hero-ahmed.jpg", imageAlt: "Graphic design student at work" },
+      { image: "/images/gallery-2.png", imageAlt: "Student reading a design reference book" },
+    ],
     campuses: ["London — Canary Wharf", "Manchester — International House"],
     awardingBody: "Arts University Plymouth",
     tuitionFee: "£9,790",
@@ -192,6 +198,10 @@ export const courses: Course[] = [
     accent: "magenta",
     featured: true,
     visual: { image: "/images/hero-kelly.jpg", imageAlt: "Fashion design student with a striking silhouette" },
+    heroGallery: [
+      { image: "/images/gallery-2.png", imageAlt: "Fashion student reading a design reference book" },
+      { image: "/images/hero-ayo.jpg", imageAlt: "Fashion design student at work" },
+    ],
     campuses: ["London — Canary Wharf"],
     awardingBody: "Arts University Plymouth",
     tuitionFee: "£9,790",
@@ -223,6 +233,10 @@ export const courses: Course[] = [
     accent: "plum",
     featured: true,
     visual: { image: "/images/course-1.jpg", imageAlt: "Fashion media and marketing students at a photoshoot" },
+    heroGallery: [
+      { image: "/images/hero-molly.jpg", imageAlt: "Fashion media student at work" },
+      { image: "/images/gallery-4.png", imageAlt: "Students reviewing marketing materials together" },
+    ],
     campuses: ["London — Canary Wharf", "Manchester — International House"],
     awardingBody: "Arts University Plymouth",
     tuitionFee: "£9,790",
@@ -254,6 +268,10 @@ export const courses: Course[] = [
     accent: "blue",
     featured: true,
     visual: { image: "/images/course-3.jpg", imageAlt: "Business and management students in discussion" },
+    heroGallery: [
+      { image: "/images/courses-classroom.png", imageAlt: "Business students in a classroom session" },
+      { image: "/images/gallery-5.png", imageAlt: "Students presenting a business proposal" },
+    ],
     campuses: ["London — Canary Wharf", "Manchester — International House"],
     awardingBody: "Arts University Plymouth",
     tuitionFee: "£9,790",
@@ -311,6 +329,10 @@ export const courses: Course[] = [
     studyMode: "Full Time",
     accent: "cyan",
     visual: { image: "/images/course-4.jpg", imageAlt: "Business management graduate presenting a proposal" },
+    heroGallery: [
+      { image: "/images/explore-hero-2.png", imageAlt: "Business management student at work" },
+      { image: "/images/hero-ahmed.jpg", imageAlt: "Business management student at work" },
+    ],
     campuses: ["London — Canary Wharf", "Manchester — International House"],
     awardingBody: "Arts University Plymouth",
     tuitionFee: "£9,790",
