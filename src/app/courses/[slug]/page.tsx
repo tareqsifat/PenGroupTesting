@@ -46,8 +46,8 @@ export default async function CourseDetailsPage({
       <Header variant="inner" />
       <main className="flex-1 bg-base">
         <CourseHero course={course} />
-        <CourseStats course={course} />
         <CourseSectionNav />
+        <CourseStats course={course} />
         <StructureSection course={course} />
         <AdmissionsSection course={course} />
         <CourseSpecCta />
