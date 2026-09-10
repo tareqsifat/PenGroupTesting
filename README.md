@@ -1,8 +1,9 @@
 # VCAD — Web Developer Code Test
 
-Three pages of the VCAD website (Victoria College of Arts and Design, part
-of PEN Group), built with Next.js (App Router) + TypeScript + Tailwind CSS,
-built to match the supplied designs.
+The VCAD website (Victoria College of Arts and Design, part of PEN
+Group), built with Next.js (App Router) + TypeScript + Tailwind CSS.
+Homepage and Explore Our Courses match the supplied designs; Course
+Details is an intentional placeholder (see below).
 
 ## Running locally
 
@@ -14,16 +15,21 @@ npm run dev
 Open http://localhost:3000. `npm run build` produces a production build;
 `npm run lint` runs ESLint.
 
+To get the best output view at 1440px.
+
 ## How far I got
 
-All three pages are built end-to-end — Homepage, Explore Our Courses and
-Course Details — matching the designs section by section, working from
-the measured spacing, type sizes, colours and radii rather than the token
-sheet alone. Header and footer are shared components rendered once and
-reused across every page. Course content lives in one data file
-(`src/data/courses.ts`) and every page that shows courses — the homepage,
-the courses grid/gallery, and the details page — reads from it. Photos,
-icons and logos live in `public/images` and `public/svg`.
+Homepage and Explore Our Courses are built end-to-end, matching the
+designs section by section, working from the measured spacing, type
+sizes, colours and radii rather than the token sheet alone. Header and
+footer are shared components rendered once and reused across every page.
+Course content lives in one data file (`src/data/courses.ts`) and every
+page that shows courses — the homepage and the courses grid/gallery —
+reads from it. Photos, icons and logos live in `public/images` and
+`public/svg`.
+
+Course Details page intentionally left blank, as you gimme permission to
+skip.
 
 - **Homepage** — nav, the photo-collage hero ("welcome to VCAD"), the
   "Explore our creative courses" list + photo, the pull-quote + photo
@@ -37,12 +43,6 @@ icons and logos live in `public/images` and `public/svg`.
   loading state, and an empty state appears if a filter produces zero
   matches (see below — the brief flags these as intentionally
   undesigned).
-- **Course Details** — breadcrumb + hero, six course-info stat cards, an
-  in-page section nav, a "Course Structure & Details" panel with
-  Foundation/First/Second/Third Year sub-tabs and an accordion of
-  modules, an "Admissions & Key Details" panel with route accordions
-  plus entry/English-language requirements, a course specification
-  download banner, a "Ready to Apply?" CTA, and a testimonial carousel.
 
 Course content is modelled on VCAD's real, public course offering
 (vcad.ac.uk/study-with-us) — 5 courses across Graphic Design, Fashion,
@@ -63,11 +63,6 @@ and entry requirements are quoted from there. See `src/data/courses.ts`.
   are modelled in the same voice for each (`src/data/testimonials.ts`,
   inline in `StoriesCarousel.tsx` / `CampusesCarousel.tsx`) — clearly
   commented at each call site.
-- **Curriculum beyond the Foundation year** — the design shows module
-  detail only for the Foundation Year, with an unpopulated First/Second/
-  Third Year tab strip. Rather than invent specific module titles the
-  design never specified, later years show a short "confirmed closer to
-  enrolment" placeholder instead.
 - **Card corner cut-out** — the courses-grid cards have a circle punched
   out of the bottom-right corner around the arrow badge. Reproduced with
   a CSS radial-gradient mask so it scales to both card sizes instead of
@@ -77,8 +72,8 @@ and entry requirements are quoted from there. See `src/data/courses.ts`.
 
 - Wire the school-filter pill state into the URL (`?school=`) so filtered
   views are shareable/bookmarkable.
-- Replace the Course Specification "Download PDF" placeholder with a
-  real asset once one exists.
+- Build out the Course Details page (currently a placeholder — see
+  above).
 - Add automated tests (component tests for the carousels, grid, and
   accordions; a couple of Playwright smoke tests per page).
 - Add basic SEO (OpenGraph images, JSON-LD for courses).

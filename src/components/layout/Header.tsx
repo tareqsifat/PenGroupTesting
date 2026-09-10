@@ -72,7 +72,7 @@ export function Header({ variant = "home" }: HeaderProps) {
                 href={link.href}
                 className="flex items-center gap-[3px] text-default text-text transition-colors hover:text-pink"
               >
-                {link.label}
+                {isInner ? `/ ${link.label}` : link.label}
                 {link.chevron && <ChevronRightIcon />}
               </Link>
             ))}
