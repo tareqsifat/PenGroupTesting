@@ -1,17 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { CourseHero } from "@/components/course-details/CourseHero";
-import { CourseStats } from "@/components/course-details/CourseStats";
-import { CourseSectionNav } from "@/components/course-details/CourseSectionNav";
-import { StructureSection } from "@/components/course-details/StructureSection";
-import { AdmissionsSection } from "@/components/course-details/AdmissionsSection";
-import { CourseSpecCta } from "@/components/course-details/CourseSpecCta";
-import { ReadyToApplyCta } from "@/components/course-details/ReadyToApplyCta";
-import { TestimonialCarousel } from "@/components/shared/TestimonialCarousel";
 import { getAllCourses, getCourseBySlug } from "@/data/courses";
-import { testimonials } from "@/data/testimonials";
 
 interface CourseDetailsPageProps {
   params: Promise<{ slug: string }>;
@@ -44,15 +36,14 @@ export default async function CourseDetailsPage({
   return (
     <>
       <Header variant="inner" />
-      <main className="flex-1 bg-base">
-        <CourseHero course={course} />
-        <CourseSectionNav />
-        <CourseStats course={course} />
-        <StructureSection course={course} />
-        <AdmissionsSection course={course} />
-        <CourseSpecCta />
-        <ReadyToApplyCta />
-        <TestimonialCarousel testimonials={testimonials} bg="deep" />
+      <main className="flex flex-1 flex-col items-center justify-center gap-4 bg-base px-6 py-32 text-center">
+        <p className="text-[32px] font-semibold text-ice-blue">Page coming soon</p>
+        <p className="max-w-md text-lead text-text/80">
+          This course details page is intentionally left blank.
+        </p>
+        <Link href="/courses" className="mt-4 underline text-ice-blue">
+          Back to Courses
+        </Link>
       </main>
       <Footer />
     </>
