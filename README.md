@@ -15,8 +15,6 @@ npm run dev
 Open http://localhost:3000. `npm run build` produces a production build;
 `npm run lint` runs ESLint.
 
-To get the best output view at 1440px.
-
 ## How far I got
 
 Homepage and Explore Our Courses are built end-to-end, matching the
